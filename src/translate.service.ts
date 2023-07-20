@@ -16,7 +16,7 @@ export class TranslateService {
       missingTranslationHandler: translateModuleConfig.missingTranslationHandler,
     });
 
-    translateModuleConfig.languages.forEach(({ language, namespace, values }) =>
+    translateModuleConfig.translations.forEach(({ language, namespace, values: values }) =>
       this.store.addLanguageNamespace(language, namespace, values)
     );
   }

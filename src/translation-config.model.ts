@@ -1,6 +1,6 @@
 import { TranslationLanguage } from '@qntm-code/translation-key-store';
 
-export interface LanguageConfig {
+export interface TranslationConfig {
   language: string;
   namespace: string;
   values: TranslationLanguage;

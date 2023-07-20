@@ -26,7 +26,7 @@ yarn add @qntm-code/nest-translate
 
 ## Usage
 
-Import the `TranslateModule` into your root module. The `TranslateModule` requires a configuration object with the default language and a list of languages with their translations.
+Import the `TranslateModule` into your root module. The `TranslateModule` requires a configuration object with the default language and a list of namespaces with the translations for each language.
 
 ```typescript
 import { Module } from '@nestjs/common';
@@ -36,7 +36,7 @@ import { TranslateModule } from '@qntm-code/nest-translate';
   imports: [
     TranslateModule.forRoot({
       defaultLanguage: 'en',
-      languages: [
+      translations: [
         {
           language: 'en',
           namespace: 'greetings',
@@ -80,7 +80,7 @@ import deGreetings from './greetings.de.json';
   imports: [
     TranslateModule.forRoot({
       defaultLanguage: 'en',
-      languages: [
+      translations: [
         {
           language: 'en',
           namespace: 'greetings',

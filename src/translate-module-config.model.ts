@@ -1,8 +1,8 @@
-import { LanguageConfig } from './language-config.model';
+import { TranslationConfig } from './translation-config.model';
 
 export interface TranslateModuleConfig {
   defaultLanguage: string;
-  languages: LanguageConfig[];
+  translations: TranslationConfig[];
   enableMissingTranslationLogging?: boolean;
   missingTranslationHandler?: (language: string, key: string) => void;
 }

@@ -2,23 +2,9 @@ import { TranslateService } from './translate.service';
 
 describe(`TranslateService`, () => {
   it(`Should return a translated string`, () => {
-    const translateService = new TranslateService('en', [
-      {
-        language: 'en',
-        namespace: 'test',
-        values: {
-          hello: 'Hello',
-        },
-      },
-    ]);
-
-    expect(translateService.translate('en', 'test.hello')).toBe('Hello');
-  });
-
-  it(`Should log an error if a translated string cannot be found`, () => {
-    const translateService = new TranslateService(
-      'en',
-      [
+    const translateService = new TranslateService({
+      defaultLanguage: 'en',
+      translations: [
         {
           language: 'en',
           namespace: 'test',
@@ -27,8 +13,25 @@ describe(`TranslateService`, () => {
           },
         },
       ],
-      true
-    );
+    });
+
+    expect(translateService.translate('en', 'test.hello')).toBe('Hello');
+  });
+
+  it(`Should log an error if a translated string cannot be found`, () => {
+    const translateService = new TranslateService({
+      defaultLanguage: 'en',
+      translations: [
+        {
+          language: 'en',
+          namespace: 'test',
+          values: {
+            hello: 'Hello',
+          },
+        },
+      ],
+      enableMissingTranslationLogging: true,
+    });
 
     const consoleError = console.error;
 
@@ -44,9 +47,9 @@ describe(`TranslateService`, () => {
   it(`Should utilise a custom missing translation handler`, () => {
     let handlerCalled = false;
 
-    const translateService = new TranslateService(
-      'en',
-      [
+    const translateService = new TranslateService({
+      defaultLanguage: 'en',
+      translations: [
         {
           language: 'en',
           namespace: 'test',
@@ -55,11 +58,10 @@ describe(`TranslateService`, () => {
           },
         },
       ],
-      false,
-      () => {
+      missingTranslationHandler: () => {
         handlerCalled = true;
-      }
-    );
+      },
+    });
 
     expect(handlerCalled).toBe(false);
 
@@ -69,9 +71,9 @@ describe(`TranslateService`, () => {
   });
 
   it(`Should attempt to find a translation in the default language if the translation is not found in the requested language`, () => {
-    const translateService = new TranslateService(
-      'en',
-      [
+    const translateService = new TranslateService({
+      defaultLanguage: 'en',
+      translations: [
         {
           language: 'en',
           namespace: 'test',
@@ -85,8 +87,7 @@ describe(`TranslateService`, () => {
           values: {},
         },
       ],
-      false
-    );
+    });
 
     expect(translateService.translate('fr', 'test.hello')).toBe('Hello');
   });
