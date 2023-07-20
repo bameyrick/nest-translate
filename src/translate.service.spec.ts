@@ -1,8 +1,8 @@
-import { NestTranslateService } from './translate.service';
+import { TranslateService } from './translate.service';
 
 describe(`TranslateService`, () => {
   it(`Should return a translated string`, () => {
-    const translateService = new NestTranslateService('en', [
+    const translateService = new TranslateService('en', [
       {
         language: 'en',
         namespace: 'test',
@@ -16,7 +16,7 @@ describe(`TranslateService`, () => {
   });
 
   it(`Should log an error if a translated string cannot be found`, () => {
-    const translateService = new NestTranslateService(
+    const translateService = new TranslateService(
       'en',
       [
         {
@@ -44,7 +44,7 @@ describe(`TranslateService`, () => {
   it(`Should utilise a custom missing translation handler`, () => {
     let handlerCalled = false;
 
-    const translateService = new NestTranslateService(
+    const translateService = new TranslateService(
       'en',
       [
         {
@@ -69,7 +69,7 @@ describe(`TranslateService`, () => {
   });
 
   it(`Should attempt to find a translation in the default language if the translation is not found in the requested language`, () => {
-    const translateService = new NestTranslateService(
+    const translateService = new TranslateService(
       'en',
       [
         {
