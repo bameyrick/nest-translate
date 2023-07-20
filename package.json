@@ -55,6 +55,7 @@
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.1.0"
+    "@nestjs/common": "^10.1.0",
+    "@qntm-code/translation-key-store": "^1.0.1"
   }
 }
