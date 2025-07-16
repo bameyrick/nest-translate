@@ -1,4 +1,4 @@
-name: SonarCloud
+name: SonarQube
 on:
   push:
     branches:
@@ -6,16 +6,16 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  sonarcloud:
+  sonarqube:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛒
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan 🔍
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: SonarQube Scan 🔍
+        uses: SonarSource/sonarqube-scan-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
